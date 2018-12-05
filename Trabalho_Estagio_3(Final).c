@@ -488,7 +488,7 @@ void creditos(){
 		"\nJogo da Memória em C\n\n"
 		"Instituicao: Unipê - Centro Universitário de João Pessoa\n"
 		"Curso: Ciências da Computação\n"
-		"Unidade Curricular: Introduão a Programação\n"
+		"Unidade Curricular: Introdução a Programação\n"
 		"Professor: Leandro Figueiredo Alves\n"
 		"Aluno: Matteus Silvestre Maciel Das Neves Carvalho\n\n\n");
 		sleep(1);
