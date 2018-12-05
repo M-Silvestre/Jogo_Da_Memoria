@@ -1,5 +1,5 @@
-/*Trabalho Terceiro Est·gio
-Jogo da MemÛria
+/*Trabalho Terceiro Est√°gio
+Jogo da Mem√≥ria
 ALunos:
 	1810022455 - Matteus Silvestre
 */
@@ -14,48 +14,48 @@ ALunos:
 //Definindo tipos para os itens do tabuleiro e as partidas
 typedef struct str_item{
 	char letra; //Qual a letra do item
-	int vis; //Se a letra esta visÌvel ou oculta
+	int vis; //Se a letra esta vis√≠vel ou oculta
 } item;
 typedef struct str_jogo{
 	char nome[20]; //Nome do jogador
-	int jogadas; //PontuaÁ„o de um jogador (com quantas jogadas ele venceu o jogo)
+	int jogadas; //Pontua√ß√£o de um jogador (com quantas jogadas ele venceu o jogo)
 	int modo; //Se o jogo foi 4x4 ou 6x6
 	struct str_jogo * prox; //Ponteiro para outra partida (gerando uma lista encadeada)
 } partida;
 
 
-//Declarando funÁıes
+//Declarando fun√ß√µes
 item** gera_tab(int x);
 int menu(), escolha(int x, item** *tab);
 partida * recebe_ranking();
 void exibe_tab(int x, item** tab), exibe_ranking(partida * lista), libera_tab(int x, item** tab);
 void edita_ranking(partida * lista, int x, int jogadas), libera_lista(partida * lista), creditos();
 
-//Definindo func„o principal
+//Definindo func√£o principal
 int main(){	
-	setlocale(LC_ALL, "Portuguese"); //Habilitar acentos e "Á"
-	srand(time(NULL)); //Usar relÛgio como semente do comando rand() para garantir variaÁ„o nos resultados
+	setlocale(LC_ALL, "Portuguese"); //Habilitar acentos e "√ß"
+	srand(time(NULL)); //Usar rel√≥gio como semente do comando rand() para garantir varia√ß√£o nos resultados
 	int n=4, x;
-	/*OpÁ„o do usu·rio*/
+	/*Op√ß√£o do usu√°rio*/
 	partida * lista; //Lista de jogadores do ranking
-	printf("JOGO DA MEM”RIA\n\n");
+	printf("JOGO DA MEM√ìRIA\n\n");
 	while(n){
-	n = menu(); //Exibe as opÁıes e recebe a escolha do usu·rio
+	n = menu(); //Exibe as op√ß√µes e recebe a escolha do usu√°rio
 	switch(n){
 		case 1:
 			printf("\nInforme o tamanho do jogo (4 para 4x4, 6 para 6x6):\n"
-			"OpÁ„o: ");
+			"Op√ß√£o: ");
 			scanf("%d", &x);
-			//Caso o usu·rio informe um tamanho inv·lido
+			//Caso o usu√°rio informe um tamanho inv√°lido
 			while((x!=4)&&(x!=6)){
-				printf("Informe um tamanho v·lido! (4 para 4x4, 6 para 6x6)\n"
-						"OpÁ„o: ");
+				printf("Informe um tamanho v√°lido! (4 para 4x4, 6 para 6x6)\n"
+						"Op√ß√£o: ");
 				scanf("%d", &x);
 			};
 			item** tab = gera_tab(x); //Gera um tabuleiro de tamanho x por x
 			int res, pares = 0, jogadas = 0;
 			exibe_tab(x, tab);
-			//O programa deve receber escolhas do jogador atÈ que todos os pares sejam formados
+			//O programa deve receber escolhas do jogador at√© que todos os pares sejam formados
 			while(pares<(x*x/2)){
 				//"res" recebe 1 se a escolha for "correta", e 0 for "errada"
 				res = escolha(x, &tab);
@@ -63,11 +63,11 @@ int main(){
 				if(res){
 					pares++;
 				};
-				//As jogadas atÈ se resolver o jogo s„o contadas
+				//As jogadas at√© se resolver o jogo s√£o contadas
 				jogadas++;
 			};
 			exibe_tab(x, tab);
-			printf("ParabÈns, vocÍ ganhou no modo %dx%d! N˙mero de jogadas: %d\n", x, x, jogadas);
+			printf("Parab√©ns, voc√™ ganhou no modo %dx%d! N√∫mero de jogadas: %d\n", x, x, jogadas);
 			lista = recebe_ranking();
 			edita_ranking(lista, x, jogadas);
 			libera_tab(x, tab);
@@ -90,27 +90,29 @@ int main(){
 	return 0;
 };
 
-//FunÁ„o para receber a escolha do usu·rio
+//Fun√ß√£o para receber a escolha do usu√°rio
 int menu(){
-	int op;
-	ERROOP:		
+	int op;	
 	printf("MENU\n\n"
 			"Digite 1 para um novo jogo.\n"
 			"Digite 2 para ver o ranking de jogadores.\n"
-			"Digite 3 para ver os crÈditos do programa.\n"
+			"Digite 3 para ver os cr√©ditos do programa.\n"
 			"Digite 0 para sair\n"
-			"OpÁ„o: ");
+			"Op√ß√£o: ");
+	ERROOP:
 	scanf("%d",&op);
 	if((op==1)||(op==2)||(op==3)||(op==0)){
 		return op;
 	}
 	else{
-		printf("Opcao inv·lida.\n\n");
+		printf("\nOpcao inv√°lida!\n\n");
+		sleep(1);
+		printf("Nova op√ß√£o: ");		
 		goto ERROOP;
 	};
 };
 
-//FunÁ„o para gerar o tabuleiro de letras
+//Fun√ß√£o para gerar o tabuleiro de letras
 item** gera_tab(int x){
 	int i, j, k, tam_lista, r;
 	//Gerando uma lista de letras
@@ -118,7 +120,7 @@ item** gera_tab(int x){
 	char* lista;
 	lista = (char*)malloc(tam_lista*sizeof(char));
 	if(!lista){
-		printf("Erro na alocaÁ„o de memÛria");
+		printf("Erro na aloca√ß√£o de mem√≥ria");
 		return 0;
 	};
 	switch(x){
@@ -136,37 +138,37 @@ item** gera_tab(int x){
 	item** tab;
 	tab = (item**)malloc(x*sizeof(item*));
 	if(!tab){
-		printf("Erro na alocaÁ„o de memÛria.\n");
+		printf("Erro na aloca√ß√£o de mem√≥ria.\n");
 		return 0;
 	};
 	//Gerando os itens do tabuleiro
 	for(i = 0; i < x; i++){
 		tab[i] = (item*)malloc(x*sizeof(item));
 		if(!(tab[i])){
-			printf("Erro na alocaÁ„o de memÛria.\n");
+			printf("Erro na aloca√ß√£o de mem√≥ria.\n");
 			return;
 		};
 		for(j = 0; j < x; j++){
-			r = rand() % tam_lista; //Escolhe um n˙mero aleatÛrio, que corresponde a uma letra da lista
+			r = rand() % tam_lista; //Escolhe um n√∫mero aleat√≥rio, que corresponde a uma letra da lista
 			tab[i][j].letra = lista[r]; //Faz dessa letra um item do tabuleiro
-			tab[i][j].vis = 0; //A letra deve estar oculta no comeÁo do jogo
+			tab[i][j].vis = 0; //A letra deve estar oculta no come√ßo do jogo
 			for(k = r; k < tam_lista; k++){
-				lista[k] = lista[k+1]; //"Move" cada letra apÛs a escolhida uma posiÁ„o ‡ frente, removendo a letra j· usada
+				lista[k] = lista[k+1]; //"Move" cada letra ap√≥s a escolhida uma posi√ß√£o √† frente, removendo a letra j√° usada
 			};
-			tam_lista--; //Reduz o intervalo de n˙meros a se escolher
+			tam_lista--; //Reduz o intervalo de n√∫meros a se escolher
 		};
 	};
 	return tab;
 };
 
-//FunÁ„o para exibir o tabuleiro
+//Fun√ß√£o para exibir o tabuleiro
 void exibe_tab(int x, item** tab){
 	int i,j;
 	system("cls");
 	printf("Tabuleiro\n\n");
 	for (i = 0; i < x; i++){
         for (j = 0; j < x; j++){
-        	if(tab[i][j].vis){ //A letra sÛ deve ser exibida se for escolhida ou j· foi pareada
+        	if(tab[i][j].vis){ //A letra s√≥ deve ser exibida se for escolhida ou j√° foi pareada
         		printf("\t%c", tab[i][j].letra);
 			}
 			else{
@@ -178,51 +180,51 @@ void exibe_tab(int x, item** tab){
 	printf("\n");
 };
 
-//FunÁ„o que altera o tabuleiro
+//Fun√ß√£o que altera o tabuleiro
 int escolha(int x, item** *tab){
 	int x1, x2, y1, y2;
 		ERROXY1:
-		printf("\nInforme as coordenadas do primeiro n˙mero: ");
+		printf("\nInforme as coordenadas do primeiro n√∫mero: ");
 		scanf("%d%d", &x1, &y1);
-		//Caso o usu·rio informe coordenadas fora do tabuleiro
+		//Caso o usu√°rio informe coordenadas fora do tabuleiro
 		if( (1 > x1) || (x1 > x) || (1 > y1) || (y1 > x) ){
-			printf("Coordenadas inv·lidas!\n");
+			printf("Coordenadas inv√°lidas!\n");
 			goto ERROXY1;
 		};
 		x1--;
 		y1--;
-		//Caso o usu·rio escolha uma letra j· pareada
+		//Caso o usu√°rio escolha uma letra j√° pareada
 		if((*tab)[x1][y1].vis==1){
-			printf("Essa letra j· foi pareada, escolha outra.\n");
+			printf("Essa letra j√° foi pareada, escolha outra.\n");
 			goto ERROXY1;
 		};
 		(*tab)[x1][y1].vis = 1;
 		exibe_tab(x, *tab);
 		ERROXY2:
-		printf("\nInforme as coordenadas do segundo n˙mero: ");
+		printf("\nInforme as coordenadas do segundo n√∫mero: ");
 		scanf("%d%d", &x2, &y2);
-		//Caso o usu·rio informe coordenadas fora do tabuleiro
+		//Caso o usu√°rio informe coordenadas fora do tabuleiro
 		if( (1 > x2) || (x2 > x) || (1 > y2) || (y2 > x) ){
-			printf("Coordenadas inv·lidas!\n");
+			printf("Coordenadas inv√°lidas!\n");
 			goto ERROXY2;
 		};
 		x2--;
 		y2--;
-		//Caso o usu·rio escolha o item anterior
+		//Caso o usu√°rio escolha o item anterior
 		if((x1==x2)&&(y1==y2)){
-			printf("VocÍ precisa escolher dois itens diferentes!\n");
+			printf("Voc√™ precisa escolher dois itens diferentes!\n");
 			goto ERROXY2;
 		};
-		//Caso o usu·rio escolha uma letra j· pareada
+		//Caso o usu√°rio escolha uma letra j√° pareada
 		if((*tab)[x2][y2].vis==1){
-			printf("Essa letra j· foi pareada, escolha outra.\n");
+			printf("Essa letra j√° foi pareada, escolha outra.\n");
 			goto ERROXY2;
 		};
 		(*tab)[x2][y2].vis = 1;
 		exibe_tab(x, *tab);
 		if((*tab)[x1][y1].letra!=(*tab)[x2][y2].letra){
-			printf("Letras diferentes, par n„o foi formado.\n");
-			//As letras voltar„o a ser ocultas 
+			printf("Letras diferentes, par n√£o foi formado.\n");
+			//As letras voltar√£o a ser ocultas 
 			(*tab)[x1][y1].vis = 0;
 			(*tab)[x2][y2].vis = 0;
 			return 0; //Escolha "errada"
@@ -233,18 +235,18 @@ int escolha(int x, item** *tab){
 		};
 };
 
-//FunÁ„o que libera a memoria usada pelo tabuleiro
+//Fun√ß√£o que libera a memoria usada pelo tabuleiro
 void libera_tab(int x, item ** tab){
 	int i;
-	//Libera a memÛria em cada coluna (arrays de inteiros)
+	//Libera a mem√≥ria em cada coluna (arrays de inteiros)
 	for(i = 0; i < x; i++){
 		free(tab[i]);
 	};
-	//Libera a memÛria das linhas (ponteiros)
+	//Libera a mem√≥ria das linhas (ponteiros)
 	free(tab);
 };
 
-//FunÁ„o que recebe o ranking do arquivo
+//Fun√ß√£o que recebe o ranking do arquivo
 partida * recebe_ranking() {
     FILE * arquivo = fopen("JMranking.txt", "r");
 	//Verifica abertura do arquivo:
@@ -252,65 +254,65 @@ partida * recebe_ranking() {
 		printf("Erro ao acessar arquivo.\n");
 		return 0;
 	};
-    //InÌcio do arquivo
+    //In√≠cio do arquivo
     partida * lista = (partida*)malloc(sizeof(partida));
-    //Verifica alocaÁ„o
+    //Verifica aloca√ß√£o
     if(!lista){
-    	printf("Erro na alocaÁ„o de memÛria.\n");
+    	printf("Erro na aloca√ß√£o de mem√≥ria.\n");
     	return 0;
 	};
-	//Vari·vel para ler cada linha:
+	//Vari√°vel para ler cada linha:
 	char linha [40];
 	//Primeira linha
 	fgets(linha, 40, arquivo);
-	//Se n„o houver nenhum registro no arquivo:
+	//Se n√£o houver nenhum registro no arquivo:
 	if(feof(arquivo)) {
         printf("Ranking vazio... quer ser o primeiro?\n");
         return 0;
 	};
-	//Antes da vÌrgula, h· o nome do jogador
+	//Antes da v√≠rgula, h√° o nome do jogador
     char * nome;  
     nome = strtok(linha,",");
     //Salva no primeiro elemento da lista
     strcpy(lista->nome, nome);
     
-    //Depois da primeira vÌrgula, vem a modalidade de jogo, 4x4 ou 6x6
+    //Depois da primeira v√≠rgula, vem a modalidade de jogo, 4x4 ou 6x6
     char * modo_string = strtok(NULL,",");
     //Transforma para inteiro e salva na lista:
     lista->modo = atoi(modo_string);
     
-    //Depois da segunda vÌrgula, vem a pontuaÁ„o do jogo
+    //Depois da segunda v√≠rgula, vem a pontua√ß√£o do jogo
     char * jogadas_string = strtok(NULL,",");
     //Transforma para inteiro e salva na lista:
     lista->jogadas = atoi(jogadas_string);
     
     lista->prox = NULL;
 
-    //PrÛximos nomes
+    //Pr√≥ximos nomes
     fgets(linha, 60, arquivo);
     //Salva o ponteiro anterior para iterar:
     partida * aux = lista;
-    //Enquanto n„o for o fim do arquivo
+    //Enquanto n√£o for o fim do arquivo
     while(!feof(arquivo)) {
-        //Aloca memÛria para um nova partida a ser lida:
+        //Aloca mem√≥ria para um nova partida a ser lida:
         partida * novo = (partida*) malloc (sizeof(partida));
-        //Verifica alocaÁ„o
+        //Verifica aloca√ß√£o
         if(!novo){
-            printf("Erro na alocaÁ„o de memÛria.\n");
+            printf("Erro na aloca√ß√£o de mem√≥ria.\n");
             return 0;
 		};
         //Copiando a string lida antes da virgula, economizando variavel:
         strcpy(novo->nome,strtok(linha,","));
-        //Capturando as strings depois das vÌrgulas, transformando-as para inteiros e salvando no novo elemento da lista
+        //Capturando as strings depois das v√≠rgulas, transformando-as para inteiros e salvando no novo elemento da lista
         novo->modo = atoi(strtok(NULL,","));
         novo->jogadas= atoi(strtok(NULL,","));
-        //Este È um novo elemento, depois dele n„o ha outro:
+        //Este √© um novo elemento, depois dele n√£o ha outro:
         novo->prox = 0;
         //O anterior, que guardava o fim da fila, agora vai apontar para o novo elemento criado:
         aux->prox = novo;
         //Agora o novo elemento criado e o anterior, pois quando iterar sera gerado um novo elemento
 		aux = novo;
-		//Antes de iterar, deve-se ler a prÛxima linha
+		//Antes de iterar, deve-se ler a pr√≥xima linha
         fgets(linha, 40, arquivo);
     }
     //Fechando o arquivo:
@@ -318,9 +320,9 @@ partida * recebe_ranking() {
     return lista;
 };
 
-//FunÁ„o para liberar a memÛria usada para a lista
+//Fun√ß√£o para liberar a mem√≥ria usada para a lista
 void libera_lista(partida * lista){
-	//Uma vari·vel auxiliar È necess·ria para liberar a original
+	//Uma vari√°vel auxiliar √© necess√°ria para liberar a original
 	partida * aux;
 	while(lista){
 		aux = lista;
@@ -329,7 +331,7 @@ void libera_lista(partida * lista){
     };
 };
 
-//FunÁ„o para exibir a lista
+//Fun√ß√£o para exibir a lista
 void exibe_ranking(partida * lista){
 	system("cls");
     int i, j, tam4, tam6;
@@ -345,23 +347,23 @@ void exibe_ranking(partida * lista){
 				break;
 		}
 	};
-	//Alocando a memÛria para os dois rankings
+	//Alocando a mem√≥ria para os dois rankings
     if(tam4){
     	rank4 = (partida*)malloc(tam4*sizeof(partida));
     	if(!rank4){
-    		printf("Erro na alocaÁ„o de memÛria.\n");
+    		printf("Erro na aloca√ß√£o de mem√≥ria.\n");
     		return;
 		};
 	};
     if(tam6){
     	rank6 = (partida*)malloc(tam6*sizeof(partida));
     	if(!rank6){
-    		printf("Erro na alocaÁ„o de memÛria.\n");
+    		printf("Erro na aloca√ß√£o de mem√≥ria.\n");
     		return;
 		};
 	};
-	//… preciso separar as partidas em relaÁ„o ao modo
-	aux = lista; //… preciso voltar ao comeÁo da lista
+	//√â preciso separar as partidas em rela√ß√£o ao modo
+	aux = lista; //√â preciso voltar ao come√ßo da lista
     for(i = 0, j = 0; aux; aux = aux->prox){
     	switch(aux->modo){
 			case 4:
@@ -381,7 +383,7 @@ void exibe_ranking(partida * lista){
 	//Reordenando os elementos das duas listas
 	/*Cada elemento deve ser comparado aos anteriores. 
 	Caso encontre algum maior, eles devem ser trocados de lugar
-	com a ajuda de um espaÁo auxiliar*/
+	com a ajuda de um espa√ßo auxiliar*/
 	partida aux_rank;
 	for(i = 0; i < tam4; i++){
 		for(j=0; j < i; j++){
@@ -421,13 +423,13 @@ void exibe_ranking(partida * lista){
 	return;
 };
 
-//FunÁ„o que adiciona novos jogadores ao ranking, ou altera pontuaÁ„o de jogadores j· existentes
+//Fun√ß√£o que adiciona novos jogadores ao ranking, ou altera pontua√ß√£o de jogadores j√° existentes
 void edita_ranking(partida * lista, int x, int jogadas){
 	char nome[20]; //Nome a ser recebido
-	int i=0; //Se uma partida desse modo j· foi ganha por esse usu·rio
+	int i=0; //Se uma partida desse modo j√° foi ganha por esse usu√°rio
 	
-	//… preciso saber se o nome do jogador j· est· no ranking
-	printf("Informe seu nome (atÈ 20 caracteres): ");
+	//√â preciso saber se o nome do jogador j√° est√° no ranking
+	printf("Informe seu nome (at√© 20 caracteres): ");
 	scanf("%20s", &nome);
     //Para iterar na lista:
     partida * aux = lista;
@@ -439,28 +441,28 @@ void edita_ranking(partida * lista, int x, int jogadas){
 	};
 	//Varre a lista de partidas e reescreve o arquivo
     while(aux){
-        //Se encontrar nome e modo iguais com mais jogadas (pontuaÁ„o "pior")
+        //Se encontrar nome e modo iguais com mais jogadas (pontua√ß√£o "pior")
         if((!strcmp(aux->nome, nome)) && (aux->modo == x) && (aux->jogadas >= jogadas)) {
-            //Reescreve no arquivo com o n˙mero atualizador ("melhor") de jogadas 
+            //Reescreve no arquivo com o n√∫mero atualizador ("melhor") de jogadas 
             aux->jogadas = jogadas;
             fprintf(arquivo, "%s,%d,%d\n", aux->nome, aux->modo, aux->jogadas);
             i++;
 
         }
-        //Caso cotr·rio, reescreve a partida como antes
+        //Caso cotr√°rio, reescreve a partida como antes
         else{
         	fprintf(arquivo, "%s,%d,%d\n", aux->nome, aux->modo, aux->jogadas);
 		};
-        //Vai para o prÛxima partida da lista
+        //Vai para o pr√≥xima partida da lista
         aux = aux->prox;
     };
-    //Caso n„o haja nenhum jogador no ranking com o mesmo nome
+    //Caso n√£o haja nenhum jogador no ranking com o mesmo nome
     //e no mesmo modo de jogo, adicionar um novo nome no arquivo
     if(!i){
     	fprintf(arquivo, "%s,%d,%d\n", nome, x, jogadas);
     	fclose(arquivo);
     	libera_lista(lista);
-		printf("PontuaÁ„o adicionada com sucesso!\n\n");
+		printf("Pontua√ß√£o adicionada com sucesso!\n\n");
 		sleep(1);
 		printf("(Pressione qualquer tecla para retornar ao menu)\n");
 		getch();
@@ -470,7 +472,7 @@ void edita_ranking(partida * lista, int x, int jogadas){
 	else{
 		fclose(arquivo);
 		libera_lista(lista);
-		printf("PontuaÁ„o atualizada com sucesso!\n\n");
+		printf("Pontua√ß√£o atualizada com sucesso!\n\n");
 		sleep(1);
 		printf("(Pressione qualquer tecla para retornar ao menu)");
 		getch();
@@ -479,14 +481,14 @@ void edita_ranking(partida * lista, int x, int jogadas){
 	};
 };
 
-//FunÁ„o que exibe os crÈditos
+//Fun√ß√£o que exibe os cr√©ditos
 void creditos(){
 	system("cls");
-	printf("CR…DITOS\n"
-		"\nJogo da MemÛria em C\n\n"
-		"Instituicao: UnipÍ - Centro Universit·rio de Jo„o Pessoa\n"
-		"Curso: CiÍncias da ComputaÁ„o\n"
-		"Unidade Curricular: Introdu„o a ProgramaÁ„o\n"
+	printf("CR√âDITOS\n"
+		"\nJogo da Mem√≥ria em C\n\n"
+		"Instituicao: Unip√™ - Centro Universit√°rio de Jo√£o Pessoa\n"
+		"Curso: Ci√™ncias da Computa√ß√£o\n"
+		"Unidade Curricular: Introdu√£o a Programa√ß√£o\n"
 		"Professor: Leandro Figueiredo Alves\n"
 		"Aluno: Matteus Silvestre Maciel Das Neves Carvalho\n\n\n");
 		sleep(1);
